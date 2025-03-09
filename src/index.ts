@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { promptUserForOptions } from './interactive';
+import { promptUserForOptions } from './utils';
 import {
   validateFormat,
   validateOutput,
@@ -7,7 +7,7 @@ import {
 } from './validators/validator';
 import { directoryParser } from './parsers';
 import { jsonGenerator, markdownGenerator } from './generators';
-import { writeFile } from './helpers';
+import { writeFile } from './utils';
 
 interface CLIOptions {
   format: string;
