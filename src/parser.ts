@@ -4,12 +4,7 @@ import { parse } from '@babel/parser';
 import traverse, { NodePath } from '@babel/traverse';
 import * as t from '@babel/types';
 import doctrine from 'doctrine';
-
-type ComponentInfo = {
-  componentName: string;
-  props: string[];
-  jsDoc: doctrine.Annotation | null;
-};
+import { ComponentInfo } from './types';
 
 export function parseFile(filePath: string): ComponentInfo[] {
   const code = fs.readFileSync(filePath, 'utf-8');
