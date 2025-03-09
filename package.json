@@ -10,6 +10,9 @@
     "start": "node dist/bin/cli.js",
     "format": "prettier --write ."
   },
+  "bin": {
+    "autodocs": "./dist/bin/cli.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
