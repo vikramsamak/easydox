@@ -1,6 +1,15 @@
 import inquirer from 'inquirer';
 
-export async function promptUserForOptions(existingOptions: any) {
+export interface CLIOptions {
+  source?: string;
+  format?: string;
+  output?: string;
+  enableAI?: boolean;
+}
+
+export async function promptUserForOptions(
+  existingOptions: CLIOptions
+): Promise<CLIOptions> {
   return await inquirer.prompt([
     {
       type: 'input',
