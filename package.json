@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-args": "npx ts-node bin/cli.ts -s tests/ -f json -o docs",
-    "dev-interactive": "npx ts-node bin/cli.ts",
+    "dev-args": "npx ts-node src/bin/cli.ts -s tests/ -f md -o docs",
+    "dev-interactive": "npx ts-node src/bin/cli.ts",
     "build": "tsc",
     "start": "node dist/bin/cli.js",
     "format": "prettier --write ."
