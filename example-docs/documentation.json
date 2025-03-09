@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "generatedAt": "2025-03-09T04:40:03.557Z",
+    "componentCount": 1
+  },
+  "components": [
+    {
+      "componentName": "sum",
+      "props": [
+        "a",
+        "b"
+      ],
+      "jsDoc": {
+        "description": "Adds two numbers together.",
+        "tags": [
+          {
+            "title": "param",
+            "name": "a",
+            "type": "number",
+            "description": "The first number."
+          },
+          {
+            "title": "param",
+            "name": "b",
+            "type": "number",
+            "description": "The second number."
+          },
+          {
+            "title": "returns",
+            "name": "",
+            "type": "number",
+            "description": "The sum of the two numbers."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-args": "npx ts-node src/bin/cli.ts -s tests/ -f md -o docs",
+    "dev-args": "npx ts-node src/bin/cli.ts -s example/ -f md -o example-docs",
     "dev-interactive": "npx ts-node src/bin/cli.ts",
     "build": "tsc",
     "start": "node dist/bin/cli.js",
