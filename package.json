@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx ts-node bin/cli.ts",
+    "dev-args": "npx ts-node bin/cli.ts -s tests/ -f json -o docs",
+    "dev-interactive": "npx ts-node bin/cli.ts",
     "build": "tsc",
     "start": "node dist/bin/cli.js",
-    "cli": "npx ts-node bin/cli.ts",
     "format": "prettier --write ."
   },
   "keywords": [],
