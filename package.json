@@ -14,7 +14,7 @@
     "autodocs": "./dist/bin/cli.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Vikram Samak",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
