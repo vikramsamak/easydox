@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import { runCLI } from '../src/index';
+import { runCLI } from '../index';
 
 const program = new Command();
 
