@@ -1,6 +1,6 @@
-import { ComponentInfo } from './types';
+import { ComponentInfo } from '../types';
 
-export function generateMarkdown(components: ComponentInfo[]): string {
+export function markdownGenerator(components: ComponentInfo[]): string {
   let markdown = `# AutoDocs: Component Documentation\n\n`;
 
   components.forEach(({ componentName, props, jsDoc }) => {
@@ -32,18 +32,4 @@ export function generateMarkdown(components: ComponentInfo[]): string {
   });
 
   return markdown;
-}
-
-export function generateJSON(components: ComponentInfo[]): string {
-  return JSON.stringify(
-    {
-      metadata: {
-        generatedAt: new Date().toISOString(),
-        componentCount: components.length,
-      },
-      components,
-    },
-    null,
-    2
-  );
 }

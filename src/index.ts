@@ -1,8 +1,12 @@
 import chalk from 'chalk';
 import { promptUserForOptions } from './interactive';
-import { validateFormat, validateOutput, validateSource } from './validator';
-import { parseDirectory } from './parser';
-import { generateJSON, generateMarkdown } from './generator';
+import {
+  validateFormat,
+  validateOutput,
+  validateSource,
+} from './validators/validator';
+import { directoryParser } from './parsers';
+import { jsonGenerator, markdownGenerator } from './generators';
 import { writeFile } from './helpers';
 
 interface CLIOptions {
@@ -57,7 +61,7 @@ export async function runCLI(
   console.log(chalk.blue('\n🚀 Starting Parsing Process...\n'));
 
   try {
-    const components = parseDirectory(source);
+    const components = directoryParser(source);
 
     console.log(chalk.green('\n✅ Parsing Completed Successfully!'));
 
@@ -72,10 +76,10 @@ export async function runCLI(
       switch (format.trim()) {
         case 'md':
         case 'mdx':
-          content = generateMarkdown(components);
+          content = markdownGenerator(components);
           break;
         case 'json':
-          content = generateJSON(components);
+          content = jsonGenerator(components);
           break;
         default:
           console.log(
