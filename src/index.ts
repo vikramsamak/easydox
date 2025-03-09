@@ -2,6 +2,8 @@ import chalk from 'chalk';
 import { promptUserForOptions } from './interactive';
 import { validateFormat, validateOutput, validateSource } from './validator';
 import { parseDirectory } from './parser';
+import { generateJSON, generateMarkdown } from './generator';
+import { writeFile } from './helpers';
 
 interface CLIOptions {
   format: string;
@@ -56,8 +58,36 @@ export async function runCLI(
 
   try {
     const components = parseDirectory(source);
-    console.log(JSON.stringify(components, null, 2));
+
     console.log(chalk.green('\n✅ Parsing Completed Successfully!'));
+
+    console.log(chalk.blue('\n📝 Generating Documentation...\n'));
+
+    const formats = options.format ? options.format.split(',') : [];
+
+    formats.forEach((format: string) => {
+      let content = '';
+      let fileName = `documentation.${format.trim()}`;
+
+      switch (format.trim()) {
+        case 'md':
+        case 'mdx':
+          content = generateMarkdown(components);
+          break;
+        case 'json':
+          content = generateJSON(components);
+          break;
+        default:
+          console.log(
+            chalk.yellow(`⚠️ Unsupported format: ${format}, skipping...`)
+          );
+          return;
+      }
+
+      writeFile(options.output!, fileName, content);
+    });
+
+    console.log(chalk.green('\n✅ Documentation Generation Completed!'));
   } catch (error) {
     console.error(
       chalk.red(
