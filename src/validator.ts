@@ -1,9 +1,7 @@
 import fs from 'fs-extra';
 import chalk from 'chalk';
 import path from 'path';
-/**
- * Validates the source directory path.
- */
+
 export function validateSource(source?: string): boolean {
   if (!source || source.trim() === '') {
     console.log(chalk.red('❌ Error: Source directory cannot be empty.'));
@@ -21,9 +19,6 @@ export function validateSource(source?: string): boolean {
   return true;
 }
 
-/**
- * Validates the output format.
- */
 export function validateFormat(format: string): boolean {
   const validFormats = ['mdx', 'md', 'json'];
   const formats = format.split(',').map((f) => f.trim());
@@ -39,9 +34,6 @@ export function validateFormat(format: string): boolean {
   return true;
 }
 
-/**
- * Validates the output directory.
- */
 export function validateOutput(output?: string): boolean {
   if (!output || output.trim() === '') {
     console.log(chalk.red('❌ Error: Output directory cannot be empty.'));
