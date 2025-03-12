@@ -9,5 +9,11 @@ Adds two numbers together.
 - **a**: No description
 - **b**: The first number.
 
+### Code Example
+
+```js
+const sum = (a, b) => a + b;
+```
+
 ---
 

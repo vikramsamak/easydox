@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2025-03-09T04:40:03.557Z",
+    "generatedAt": "2025-03-12T15:43:31.976Z",
     "componentCount": 1
   },
   "components": [
@@ -32,7 +32,9 @@
             "description": "The sum of the two numbers."
           }
         ]
-      }
+      },
+      "code": "const sum = (a, b) => a + b;",
+      "fileExtension": ".js"
     }
   ]
 }
