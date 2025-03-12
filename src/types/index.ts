@@ -4,4 +4,5 @@ export type ComponentInfo = {
   componentName: string;
   props: string[];
   jsDoc: Annotation | null;
+  code: string;
 };
