@@ -1,4 +1,6 @@
 import { ComponentInfo } from '../types';
+import { markdownTable } from 'markdown-table';
+import { toTitleCase } from '../utils';
 import prettier from 'prettier';
 
 export async function markdownGenerator(
@@ -7,7 +9,7 @@ export async function markdownGenerator(
   let markdown = `# AutoDocs: Component Documentation\n\n`;
 
   components.forEach(({ componentName, props, jsDoc, code, fileExtension }) => {
-    markdown += `## ${componentName}\n\n`;
+    markdown += `## ${toTitleCase(componentName)}\n\n`;
 
     const componentDescription =
       jsDoc?.description?.trim() || 'No description available.';
@@ -17,20 +19,21 @@ export async function markdownGenerator(
     if (props.length > 0) {
       markdown += `### Props\n\n`;
 
-      const propsMarkdown = props
-        .map((prop) => {
-          const propDoc = jsDoc?.tags?.find(
-            (tag) => tag.title === 'param' && tag.description?.includes(prop)
-          );
-          const propDescription =
-            propDoc?.description?.replace(`${prop} - `, '').trim() ||
-            'No description';
+      const tableData = [['Name', 'Type', 'Description']];
 
-          return `- **${prop}**: ${propDescription}`;
-        })
-        .join('\n');
+      props.forEach((prop) => {
+        const propDoc = jsDoc?.tags?.find(
+          (tag) => tag.title === 'param' && tag.name === prop
+        );
 
-      markdown += `${propsMarkdown}\n\n`;
+        const propType = propDoc?.type || 'unknown';
+        const propDescription =
+          propDoc?.description?.trim() || 'No description';
+
+        tableData.push([`**${prop}**`, `\`${propType}\``, propDescription]);
+      });
+
+      markdown += markdownTable(tableData, { align: ['l', 'c', 'l'] }) + '\n\n';
     }
 
     if (code) {

@@ -1,13 +1,15 @@
 # AutoDocs: Component Documentation
 
-## sum
+## Sum
 
 Adds two numbers together.
 
 ### Props
 
-- **a**: No description
-- **b**: The first number.
+| Name  |   Type   | Description        |
+| :---- | :------: | :----------------- |
+| **a** | `number` | The first number.  |
+| **b** | `number` | The second number. |
 
 ### Code Example
 
