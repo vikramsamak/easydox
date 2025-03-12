@@ -3,29 +3,42 @@ import { ComponentInfo } from '../types';
 export function markdownGenerator(components: ComponentInfo[]): string {
   let markdown = `# AutoDocs: Component Documentation\n\n`;
 
-  components.forEach(({ componentName, props, jsDoc }) => {
+  components.forEach(({ componentName, props, jsDoc, code, fileExtension }) => {
     markdown += `## ${componentName}\n\n`;
 
-    // Handle case where jsDoc is null or has no description
     const componentDescription =
       jsDoc?.description?.trim() || 'No description available.';
     markdown += `${componentDescription}\n\n`;
 
     if (props.length > 0) {
       markdown += `### Props\n\n`;
-      props.forEach((prop) => {
-        // Find the corresponding @param tag and ensure it has a valid description
-        const propDoc = jsDoc?.tags?.find(
-          (tag) => tag.title === 'param' && tag.description?.includes(prop)
-        );
 
-        const propDescription = propDoc?.description
-          ? propDoc.description.replace(`${prop} - `, '').trim()
-          : 'No description';
+      const propsMarkdown = props
+        .map((prop) => {
+          const propDoc = jsDoc?.tags?.find(
+            (tag) => tag.title === 'param' && tag.description?.includes(prop)
+          );
+          const propDescription =
+            propDoc?.description?.replace(`${prop} - `, '').trim() ||
+            'No description';
 
-        markdown += `- **${prop}**: ${propDescription}\n`;
-      });
-      markdown += `\n`;
+          return `- **${prop}**: ${propDescription}`;
+        })
+        .join('\n');
+
+      markdown += `${propsMarkdown}\n\n`;
+    }
+
+    if (code) {
+      console.log(fileExtension);
+      const language =
+        fileExtension === '.tsx'
+          ? 'tsx'
+          : fileExtension === '.ts'
+            ? 'ts'
+            : 'js';
+      markdown += `### Code Example\n\n`;
+      markdown += `\`\`\`${language}\n${code.trim()}\n\`\`\`\n\n`;
     }
 
     markdown += `---\n\n`;
