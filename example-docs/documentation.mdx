@@ -1,4 +1,6 @@
-# AutoDocs: Component Documentation
+# Autodocs
+
+CLI Based tool to automate docs generation.
 
 ## Sum
 
