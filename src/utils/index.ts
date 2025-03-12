@@ -2,3 +2,4 @@ export { writeFile } from './writefile';
 export { promptUserForOptions } from './promptuser';
 export { logMessage } from './logger';
 export { toTitleCase } from './totitlecase';
+export { generateMarkdownHeader } from './generatemarkdownheader';

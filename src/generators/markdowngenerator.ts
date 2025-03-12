@@ -1,12 +1,12 @@
 import { ComponentInfo } from '../types';
 import { markdownTable } from 'markdown-table';
-import { toTitleCase } from '../utils';
+import { generateMarkdownHeader, toTitleCase } from '../utils';
 import prettier from 'prettier';
 
 export async function markdownGenerator(
   components: ComponentInfo[]
 ): Promise<string> {
-  let markdown = `# AutoDocs: Component Documentation\n\n`;
+  let markdown = `${generateMarkdownHeader()}\n\n`;
 
   components.forEach(({ componentName, props, jsDoc, code, fileExtension }) => {
     markdown += `## ${toTitleCase(componentName)}\n\n`;
