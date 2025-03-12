@@ -6,10 +6,7 @@
   "components": [
     {
       "componentName": "sum",
-      "props": [
-        "a",
-        "b"
-      ],
+      "props": ["a", "b"],
       "jsDoc": {
         "description": "Adds two numbers together.",
         "tags": [

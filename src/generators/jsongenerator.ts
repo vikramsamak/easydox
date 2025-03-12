@@ -1,15 +1,15 @@
-import { ComponentInfo } from "../types";
+import { ComponentInfo } from '../types';
 
 export function jsonGenerator(components: ComponentInfo[]): string {
-    return JSON.stringify(
-      {
-        metadata: {
-          generatedAt: new Date().toISOString(),
-          componentCount: components.length,
-        },
-        components,
+  return JSON.stringify(
+    {
+      metadata: {
+        generatedAt: new Date().toISOString(),
+        componentCount: components.length,
       },
-      null,
-      2
-    );
-  }
+      components,
+    },
+    null,
+    2
+  );
+}

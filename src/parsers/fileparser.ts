@@ -54,7 +54,7 @@ export function fileParser(filePath: string): ComponentInfo[] {
               props,
               jsDoc,
               code: componentCode,
-              fileExtension
+              fileExtension,
             });
           }
         });
@@ -83,7 +83,13 @@ export function fileParser(filePath: string): ComponentInfo[] {
         const jsDoc = extractJsDoc(path);
         const componentCode = generateCodeSnippet(path.node);
 
-        components.push({ componentName, props, jsDoc, code: componentCode ,fileExtension});
+        components.push({
+          componentName,
+          props,
+          jsDoc,
+          code: componentCode,
+          fileExtension,
+        });
       }
     },
     VariableDeclaration(path: NodePath<t.VariableDeclaration>) {
@@ -115,7 +121,13 @@ export function fileParser(filePath: string): ComponentInfo[] {
           const jsDoc = extractJsDoc(path);
           const componentCode = generateCodeSnippet(path.node);
 
-          components.push({ componentName, props, jsDoc, code: componentCode ,fileExtension});
+          components.push({
+            componentName,
+            props,
+            jsDoc,
+            code: componentCode,
+            fileExtension,
+          });
         }
       });
     },
