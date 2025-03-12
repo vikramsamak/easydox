@@ -1,7 +1,7 @@
 {
   "name": "autodocs",
   "version": "1.0.0",
-  "description": "",
+  "description": "CLI Based tool to automate docs generation.",
   "main": "index.js",
   "scripts": {
     "dev-args": "npx ts-node src/bin/cli.ts -s example/ -f md,json,mdx -o example-docs",
