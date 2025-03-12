@@ -26,6 +26,7 @@
     "doctrine": "^3.0.0",
     "fs-extra": "^11.3.0",
     "inquirer": "^12.4.2",
+    "markdown-table": "^3.0.4",
     "prettier": "^3.5.3"
   },
   "devDependencies": {
