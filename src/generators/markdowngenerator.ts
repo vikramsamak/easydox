@@ -1,6 +1,9 @@
 import { ComponentInfo } from '../types';
+import prettier from 'prettier';
 
-export function markdownGenerator(components: ComponentInfo[]): string {
+export async function markdownGenerator(
+  components: ComponentInfo[]
+): Promise<string> {
   let markdown = `# AutoDocs: Component Documentation\n\n`;
 
   components.forEach(({ componentName, props, jsDoc, code, fileExtension }) => {
@@ -44,5 +47,5 @@ export function markdownGenerator(components: ComponentInfo[]): string {
     markdown += `---\n\n`;
   });
 
-  return markdown;
+  return prettier.format(markdown, { parser: 'markdown' });
 }

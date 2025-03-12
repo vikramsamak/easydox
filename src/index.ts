@@ -69,17 +69,17 @@ export async function runCLI(
 
     const formats = options.format ? options.format.split(',') : [];
 
-    formats.forEach((format: string) => {
+    formats.forEach(async (format: string) => {
       let content = '';
       let fileName = `documentation.${format.trim()}`;
 
       switch (format.trim()) {
         case 'md':
         case 'mdx':
-          content = markdownGenerator(components);
+          content = await markdownGenerator(components);
           break;
         case 'json':
-          content = jsonGenerator(components);
+          content = await jsonGenerator(components);
           break;
         default:
           console.log(

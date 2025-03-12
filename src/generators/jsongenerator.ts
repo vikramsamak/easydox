@@ -1,7 +1,10 @@
 import { ComponentInfo } from '../types';
+import prettier from 'prettier';
 
-export function jsonGenerator(components: ComponentInfo[]): string {
-  return JSON.stringify(
+export async function jsonGenerator(
+  components: ComponentInfo[]
+): Promise<string> {
+  const rawJson = JSON.stringify(
     {
       metadata: {
         generatedAt: new Date().toISOString(),
@@ -12,4 +15,6 @@ export function jsonGenerator(components: ComponentInfo[]): string {
     null,
     2
   );
+
+  return prettier.format(rawJson, { parser: 'json' });
 }
