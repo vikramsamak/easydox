@@ -30,7 +30,6 @@ export function markdownGenerator(components: ComponentInfo[]): string {
     }
 
     if (code) {
-      console.log(fileExtension);
       const language =
         fileExtension === '.tsx'
           ? 'tsx'
