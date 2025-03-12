@@ -8,6 +8,7 @@ export function markdownGenerator(components: ComponentInfo[]): string {
 
     const componentDescription =
       jsDoc?.description?.trim() || 'No description available.';
+
     markdown += `${componentDescription}\n\n`;
 
     if (props.length > 0) {
