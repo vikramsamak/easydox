@@ -59,9 +59,9 @@ export async function runCLI(
   try {
     const components = directoryParser(source);
 
-    console.log(chalk.green('\n✅ Parsing Completed Successfully!'));
+    logMessage(`✅ Parsing Completed Successfully!`, 'green');
 
-    console.log(chalk.blue('\n📝 Generating Documentation...\n'));
+    logMessage(`📝 Generating Documentation...`, 'blue');
 
     const formats = options.format ? options.format.split(',') : [];
 
@@ -87,7 +87,7 @@ export async function runCLI(
       writeFile(options.output!, fileName, content);
     });
 
-    console.log(chalk.green('\n✅ Documentation Generation Completed!'));
+    logMessage(`✅ Documentation Generation Completed!`, 'green');
   } catch (error) {
     console.error(
       chalk.red(

@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { logMessage } from './logger';
 
 export function writeFile(
   outputDir: string,
@@ -8,5 +9,5 @@ export function writeFile(
 ) {
   const filePath = path.join(outputDir, fileName);
   fs.writeFileSync(filePath, content, 'utf-8');
-  console.log(`📄 Documentation generated: ${filePath}`);
+  logMessage(`📄 Documentation generated: ${filePath}`, 'green');
 }

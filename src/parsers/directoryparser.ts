@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { ComponentInfo } from '../types';
 import { fileParser } from './fileparser';
+import { logMessage } from '../utils';
 
 export function directoryParser(sourceDir: string): ComponentInfo[] {
   if (!fs.existsSync(sourceDir) || !fs.statSync(sourceDir).isDirectory()) {
@@ -11,9 +12,12 @@ export function directoryParser(sourceDir: string): ComponentInfo[] {
     process.exit(1);
   }
 
-  console.log(`🔍 Parsing components in directory: ${sourceDir}\n`);
+  logMessage(`🔍 Parsing components in directory: ${sourceDir}`, 'green');
+
   const files = fs.readdirSync(sourceDir);
+
   let allComponents: ComponentInfo[] = [];
+
   const validExtensions = ['.ts', '.js', '.jsx', '.tsx'];
 
   files.forEach((file) => {
@@ -22,7 +26,7 @@ export function directoryParser(sourceDir: string): ComponentInfo[] {
       fs.statSync(fullPath).isFile() &&
       validExtensions.some((ext) => fullPath.endsWith(ext))
     ) {
-      console.log(`📄 Processing file: ${file}`);
+      logMessage(`📄 Processing file: ${file}`, 'cyan');
       allComponents = allComponents.concat(fileParser(fullPath));
     }
   });
