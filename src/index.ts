@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { promptUserForOptions } from './utils';
+import { logMessage, promptUserForOptions } from './utils';
 import {
   validateFormat,
   validateOutput,
@@ -8,12 +8,7 @@ import {
 import { directoryParser } from './parsers';
 import { jsonGenerator, markdownGenerator } from './generators';
 import { writeFile } from './utils';
-
-interface CLIOptions {
-  format: string;
-  output: string;
-  enableAI: boolean;
-}
+import { CLIOptions } from './types';
 
 export async function runCLI(
   source?: string,
@@ -53,12 +48,13 @@ export async function runCLI(
     return;
   }
 
-  console.log(chalk.green(`✅ Processing: ${source}`));
-  console.log(`🔹 Output format: ${options.format}`);
-  console.log(`📂 Saving to: ${options.output}`);
-  console.log(`🤖 AI Comments: ${options.enableAI ? 'Enabled' : 'Disabled'}`);
-
-  console.log(chalk.blue('\n🚀 Starting Parsing Process...\n'));
+  logMessage(`✅ Processing: ${chalk.bold(source)}`, 'green');
+  logMessage(`🔹 Output format: ${chalk.bold(options.format)}`, 'cyan');
+  logMessage(`📂 Saving to: ${chalk.bold(options.output)}`, 'magenta');
+  logMessage(
+    `🤖 AI Comments: ${chalk.bold(options.enableAI ? 'Enabled' : 'Disabled')}`,
+    'yellow'
+  );
 
   try {
     const components = directoryParser(source);
