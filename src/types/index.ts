@@ -7,3 +7,19 @@ export type ComponentInfo = {
   code: string;
   fileExtension: string;
 };
+
+export interface CLIOptions {
+  format: string;
+  output: string;
+  enableAI: boolean;
+}
+
+export type ChalkColors =
+  | 'red'
+  | 'green'
+  | 'blue'
+  | 'yellow'
+  | 'magenta'
+  | 'cyan'
+  | 'white'
+  | 'gray';
