@@ -5,4 +5,5 @@ export type ComponentInfo = {
   props: string[];
   jsDoc: Annotation | null;
   code: string;
+  fileExtension: string;
 };
