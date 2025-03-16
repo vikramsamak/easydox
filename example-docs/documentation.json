@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2025-03-16T06:09:35.595Z",
+    "generatedAt": "2025-03-16T06:39:13.558Z",
     "componentCount": 5,
     "fileExtensions": [".js"],
     "componentNames": [
@@ -23,24 +23,35 @@
             "title": "param",
             "name": "a",
             "type": "number",
-            "description": "The first number to add."
+            "description": "The first number to add.",
+            "optional": false
           },
           {
             "title": "param",
             "name": "b",
             "type": "number",
-            "description": "The second number to add."
+            "description": "The second number to add.",
+            "optional": false
           },
           {
             "title": "returns",
             "name": "",
             "type": "number",
-            "description": "The sum of both numbers."
+            "description": "The sum of both numbers.",
+            "optional": false
           }
         ]
       },
       "code": "(a, b) => a + b",
-      "fileExtension": ".js"
+      "fileExtension": ".js",
+      "extraSections": [
+        {
+          "title": "Returns",
+          "content": [
+            "- Type: `number`\n- Description: The sum of both numbers.\n\n"
+          ]
+        }
+      ]
     },
     {
       "componentName": "toTitleCase",
@@ -52,18 +63,28 @@
             "title": "param",
             "name": "text",
             "type": "string",
-            "description": "The input string."
+            "description": "The input string.",
+            "optional": false
           },
           {
             "title": "returns",
             "name": "",
             "type": "string",
-            "description": "The title-cased string."
+            "description": "The title-cased string.",
+            "optional": false
           }
         ]
       },
       "code": "function toTitleCase(text) {\n  return text.\n  toLowerCase().\n  split(' ').\n  map((word) => word.charAt(0).toUpperCase() + word.slice(1)).\n  join(' ');\n}",
-      "fileExtension": ".js"
+      "fileExtension": ".js",
+      "extraSections": [
+        {
+          "title": "Returns",
+          "content": [
+            "- Type: `string`\n- Description: The title-cased string.\n\n"
+          ]
+        }
+      ]
     },
     {
       "componentName": "getRectangleArea",
@@ -75,24 +96,35 @@
             "title": "param",
             "name": "width",
             "type": "number",
-            "description": "The width of the rectangle."
+            "description": "The width of the rectangle.",
+            "optional": false
           },
           {
             "title": "param",
             "name": "height",
             "type": "number",
-            "description": "The height of the rectangle."
+            "description": "The height of the rectangle.",
+            "optional": false
           },
           {
             "title": "returns",
             "name": "",
             "type": "number",
-            "description": "The area of the rectangle."
+            "description": "The area of the rectangle.",
+            "optional": false
           }
         ]
       },
       "code": "function getRectangleArea(width, height) {\n  return width * height;\n}",
-      "fileExtension": ".js"
+      "fileExtension": ".js",
+      "extraSections": [
+        {
+          "title": "Returns",
+          "content": [
+            "- Type: `number`\n- Description: The area of the rectangle.\n\n"
+          ]
+        }
+      ]
     },
     {
       "componentName": "fetchData",
@@ -104,18 +136,28 @@
             "title": "param",
             "name": "url",
             "type": "string",
-            "description": "The API endpoint to fetch data from."
+            "description": "The API endpoint to fetch data from.",
+            "optional": false
           },
           {
             "title": "returns",
             "name": "",
             "type": "Promise.<Object>",
-            "description": "A promise that resolves to the JSON response."
+            "description": "A promise that resolves to the JSON response.",
+            "optional": false
           }
         ]
       },
       "code": "async function fetchData(url) {\n  const response = await fetch(url);\n  return response.json();\n}",
-      "fileExtension": ".js"
+      "fileExtension": ".js",
+      "extraSections": [
+        {
+          "title": "Returns",
+          "content": [
+            "- Type: `Promise.<Object>`\n- Description: A promise that resolves to the JSON response.\n\n"
+          ]
+        }
+      ]
     },
     {
       "componentName": "logMessage",
@@ -127,24 +169,33 @@
             "title": "param",
             "name": "message",
             "type": "string",
-            "description": "The message to log."
+            "description": "The message to log.",
+            "optional": false
           },
           {
             "title": "param",
             "name": "debug",
-            "type": "boolean=",
-            "description": "Whether to log in debug mode."
+            "type": "boolean",
+            "description": "Whether to log in debug mode.",
+            "optional": false
           },
           {
             "title": "returns",
             "name": "",
             "type": "void",
-            "description": ""
+            "description": "",
+            "optional": false
           }
         ]
       },
       "code": "function logMessage(message, debug = false) {\n  const time = new Date().toISOString();\n  console.log(`[${time}] ${debug ? '[DEBUG]' : ''} ${message}`);\n}",
-      "fileExtension": ".js"
+      "fileExtension": ".js",
+      "extraSections": [
+        {
+          "title": "Returns",
+          "content": ["- Type: `void`\n- Description: No description\n\n"]
+        }
+      ]
     }
   ]
 }

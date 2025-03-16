@@ -113,10 +113,10 @@ Logs a message with a timestamp.
 
 ### Props
 
-| Name        |    Type    | Description                   |
-| :---------- | :--------: | :---------------------------- |
-| **message** |  `string`  | The message to log.           |
-| **debug**   | `boolean=` | Whether to log in debug mode. |
+| Name        |   Type    | Description                   |
+| :---------- | :-------: | :---------------------------- |
+| **message** | `string`  | The message to log.           |
+| **debug**   | `boolean` | Whether to log in debug mode. |
 
 ### Returns
 
