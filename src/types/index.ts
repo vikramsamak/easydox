@@ -35,3 +35,10 @@ export interface JsDocInfo {
   description: string;
   tags: JsDocTag[];
 }
+
+export interface JsDocTag {
+  title: string;
+  name: string;
+  type: string;
+  description: string;
+}
