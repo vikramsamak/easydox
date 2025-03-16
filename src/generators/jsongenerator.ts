@@ -1,4 +1,4 @@
-import { genericSections } from '../constants/genericSections';
+import { genericSections } from '../constants/genericsections';
 import { ComponentInfo } from '../types';
 import prettier from 'prettier';
 

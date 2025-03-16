@@ -1,7 +1,7 @@
 import { ComponentInfo } from '../types';
 import { markdownTable } from 'markdown-table';
 import { generateMarkdownHeader, toTitleCase } from '../utils';
-import { genericSections } from '../constants/genericSections';
+import { genericSections } from '../constants/genericsections';
 import prettier from 'prettier';
 
 export async function markdownGenerator(
