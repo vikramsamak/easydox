@@ -19,16 +19,18 @@ export async function jsonGenerator(
   });
 
   const enrichedComponents = components.map((component) => {
-    const extraSections = genericSections.map((section) => {
-      const matchedTags = component.jsDoc?.tags.filter(
-        (tag) => tag.title === section.tag
-      ) || [];
+    const extraSections = genericSections
+      .map((section) => {
+        const matchedTags =
+          component.jsDoc?.tags.filter((tag) => tag.title === section.tag) ||
+          [];
 
-      return {
-        title: section.title,
-        content: matchedTags.map((tag) => section.render(tag)),
-      };
-    }).filter(section => section.content.length > 0);
+        return {
+          title: section.title,
+          content: matchedTags.map((tag) => section.render(tag)),
+        };
+      })
+      .filter((section) => section.content.length > 0);
 
     return {
       ...component,
