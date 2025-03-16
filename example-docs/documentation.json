@@ -1,7 +1,16 @@
 {
   "metadata": {
-    "generatedAt": "2025-03-12T17:35:52.989Z",
-    "componentCount": 1
+    "generatedAt": "2025-03-16T06:09:35.595Z",
+    "componentCount": 5,
+    "fileExtensions": [".js"],
+    "componentNames": [
+      "sum",
+      "toTitleCase",
+      "getRectangleArea",
+      "fetchData",
+      "logMessage"
+    ],
+    "tagsUsed": ["param", "returns"]
   },
   "components": [
     {
@@ -14,23 +23,127 @@
             "title": "param",
             "name": "a",
             "type": "number",
-            "description": "The first number."
+            "description": "The first number to add."
           },
           {
             "title": "param",
             "name": "b",
             "type": "number",
-            "description": "The second number."
+            "description": "The second number to add."
           },
           {
             "title": "returns",
             "name": "",
             "type": "number",
-            "description": "The sum of the two numbers."
+            "description": "The sum of both numbers."
           }
         ]
       },
-      "code": "const sum = (a, b) => a + b;",
+      "code": "(a, b) => a + b",
+      "fileExtension": ".js"
+    },
+    {
+      "componentName": "toTitleCase",
+      "props": ["text"],
+      "jsDoc": {
+        "description": "Capitalizes the first letter of every word in a string.",
+        "tags": [
+          {
+            "title": "param",
+            "name": "text",
+            "type": "string",
+            "description": "The input string."
+          },
+          {
+            "title": "returns",
+            "name": "",
+            "type": "string",
+            "description": "The title-cased string."
+          }
+        ]
+      },
+      "code": "function toTitleCase(text) {\n  return text.\n  toLowerCase().\n  split(' ').\n  map((word) => word.charAt(0).toUpperCase() + word.slice(1)).\n  join(' ');\n}",
+      "fileExtension": ".js"
+    },
+    {
+      "componentName": "getRectangleArea",
+      "props": ["width", "height"],
+      "jsDoc": {
+        "description": "Calculates the area of a rectangle.",
+        "tags": [
+          {
+            "title": "param",
+            "name": "width",
+            "type": "number",
+            "description": "The width of the rectangle."
+          },
+          {
+            "title": "param",
+            "name": "height",
+            "type": "number",
+            "description": "The height of the rectangle."
+          },
+          {
+            "title": "returns",
+            "name": "",
+            "type": "number",
+            "description": "The area of the rectangle."
+          }
+        ]
+      },
+      "code": "function getRectangleArea(width, height) {\n  return width * height;\n}",
+      "fileExtension": ".js"
+    },
+    {
+      "componentName": "fetchData",
+      "props": ["url"],
+      "jsDoc": {
+        "description": "Fetches data from a given API URL.",
+        "tags": [
+          {
+            "title": "param",
+            "name": "url",
+            "type": "string",
+            "description": "The API endpoint to fetch data from."
+          },
+          {
+            "title": "returns",
+            "name": "",
+            "type": "Promise.<Object>",
+            "description": "A promise that resolves to the JSON response."
+          }
+        ]
+      },
+      "code": "async function fetchData(url) {\n  const response = await fetch(url);\n  return response.json();\n}",
+      "fileExtension": ".js"
+    },
+    {
+      "componentName": "logMessage",
+      "props": ["message", "debug"],
+      "jsDoc": {
+        "description": "Logs a message with a timestamp.",
+        "tags": [
+          {
+            "title": "param",
+            "name": "message",
+            "type": "string",
+            "description": "The message to log."
+          },
+          {
+            "title": "param",
+            "name": "debug",
+            "type": "boolean=",
+            "description": "Whether to log in debug mode."
+          },
+          {
+            "title": "returns",
+            "name": "",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      "code": "function logMessage(message, debug = false) {\n  const time = new Date().toISOString();\n  console.log(`[${time}] ${debug ? '[DEBUG]' : ''} ${message}`);\n}",
       "fileExtension": ".js"
     }
   ]
