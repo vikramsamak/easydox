@@ -1,23 +1,36 @@
-import doctrine from 'doctrine';
 import * as t from '@babel/types';
+import doctrine, { Tag } from 'doctrine';
 import { NodePath } from '@babel/traverse';
+import { JsDocInfo } from '../../types';
 
-export function extractJsDoc(
-  path: NodePath<t.Node>
-): { description: string; tags: any[] } | null {
+export function extractJsDoc(path: NodePath<t.Node>): JsDocInfo | null {
   const leadingComments = path.node.leadingComments;
-  if (!leadingComments) return null;
+  if (!leadingComments || leadingComments.length === 0) return null;
 
-  const comment = leadingComments.map((c) => c.value).join('\n');
-  const parsed = doctrine.parse(comment, { unwrap: true });
+  const docComment = leadingComments
+    .filter((c) => c.type === 'CommentBlock' && c.value.startsWith('*'))
+    .map((c) => c.value)
+    .join('\n');
 
-  return {
-    description: parsed.description || '',
-    tags: parsed.tags.map((tag) => ({
-      title: tag.title,
-      name: tag.name || '',
-      type: tag.type ? doctrine.type.stringify(tag.type) : '',
-      description: tag.description || '',
-    })),
-  };
+  if (!docComment) return null;
+
+  try {
+    const parsed = doctrine.parse(`/*${docComment}*/`, {
+      unwrap: true,
+      sloppy: true,
+    });
+
+    return {
+      description: parsed.description || '',
+      tags: (parsed.tags as Tag[]).map((tag) => ({
+        title: tag.title,
+        name: tag.name || '',
+        type: tag.type ? doctrine.type.stringify(tag.type) : '',
+        description: tag.description || '',
+      })),
+    };
+  } catch (err) {
+    console.warn('⚠️ Failed to parse JSDoc:', err);
+    return null;
+  }
 }
