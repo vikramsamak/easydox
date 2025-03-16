@@ -1,18 +1,19 @@
 import fs from 'fs-extra';
-import chalk from 'chalk';
 import path from 'path';
+import { logMessage } from '../utils';
 
 export function validateSource(source?: string): boolean {
   if (!source || source.trim() === '') {
-    console.log(chalk.red('❌ Error: Source directory cannot be empty.'));
+    logMessage('❌ Error: Source directory cannot be empty.', 'red');
     return false;
   }
 
   const resolvedPath = path.resolve(source);
 
   if (!fs.existsSync(resolvedPath)) {
-    console.log(
-      chalk.red(`❌ Error: Source directory "${resolvedPath}" does not exist.`)
+    logMessage(
+      `❌ Error: Source directory "${resolvedPath}" does not exist.`,
+      'red'
     );
     return false;
   }
@@ -25,10 +26,11 @@ export function validateFormat(format: string): boolean {
 
   const invalidFormats = formats.filter((f) => !validFormats.includes(f));
   if (invalidFormats.length > 0) {
-    console.log(
-      chalk.red(`❌ Error: Invalid format(s): ${invalidFormats.join(', ')}`)
+    logMessage(
+      `❌ Error: Invalid format(s): ${invalidFormats.join(', ')}`,
+      'red'
     );
-    console.log(chalk.yellow(`✅ Valid formats: ${validFormats.join(', ')}`));
+    logMessage(`✅ Valid formats: ${validFormats.join(', ')}`, 'yellow');
     return false;
   }
   return true;
@@ -36,7 +38,7 @@ export function validateFormat(format: string): boolean {
 
 export function validateOutput(output?: string): boolean {
   if (!output || output.trim() === '') {
-    console.log(chalk.red('❌ Error: Output directory cannot be empty.'));
+    logMessage('❌ Error: Output directory cannot be empty.', 'red');
     return false;
   }
 
