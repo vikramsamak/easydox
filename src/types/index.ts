@@ -1,9 +1,7 @@
-import { Annotation } from 'doctrine';
-
 export type ComponentInfo = {
   componentName: string;
   props: string[];
-  jsDoc: Annotation | null;
+  jsDoc: JsDocInfo | null;
   code: string;
   fileExtension: string;
 };
@@ -23,3 +21,15 @@ export type ChalkColors =
   | 'cyan'
   | 'white'
   | 'gray';
+
+export interface JsDocTag {
+  title: string;
+  name: string;
+  type: string;
+  description: string;
+}
+
+export interface JsDocInfo {
+  description: string;
+  tags: JsDocTag[];
+}
