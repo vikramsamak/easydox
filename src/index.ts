@@ -17,7 +17,6 @@ export async function runCLI(
   const defaultOptions: CLIOptions = {
     format: 'mdx,md,json',
     output: 'docs',
-    enableAI: false,
   };
 
   options = { ...defaultOptions, ...options };
@@ -51,10 +50,6 @@ export async function runCLI(
   logMessage(`✅ Processing: ${chalk.bold(source)}`, 'green');
   logMessage(`🔹 Output format: ${chalk.bold(options.format)}`, 'cyan');
   logMessage(`📂 Saving to: ${chalk.bold(options.output)}`, 'magenta');
-  logMessage(
-    `🤖 AI Comments: ${chalk.bold(options.enableAI ? 'Enabled' : 'Disabled')}`,
-    'yellow'
-  );
 
   try {
     const components = directoryParser(source);

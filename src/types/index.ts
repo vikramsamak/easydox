@@ -9,7 +9,6 @@ export type ComponentInfo = {
 export interface CLIOptions {
   format: string;
   output: string;
-  enableAI: boolean;
 }
 
 export type ChalkColors =

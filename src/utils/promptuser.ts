@@ -4,7 +4,6 @@ export interface CLIOptions {
   source?: string;
   format?: string;
   output?: string;
-  enableAI?: boolean;
 }
 
 export async function promptUserForOptions(
@@ -28,12 +27,6 @@ export async function promptUserForOptions(
       name: 'output',
       message: 'Enter output directory:',
       default: existingOptions.output || 'docs',
-    },
-    {
-      type: 'confirm',
-      name: 'enableAI',
-      message: 'Enable AI-generated comments?',
-      default: existingOptions.enableAI ?? false,
     },
   ]);
 }

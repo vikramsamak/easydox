@@ -17,7 +17,6 @@ program
     'mdx,md,json'
   )
   .option('-o, --output <directory>', 'Output directory', 'docs')
-  .option('--enableAI', 'Enable AI-generated comments', false)
   .addHelpText(
     'after',
     `
