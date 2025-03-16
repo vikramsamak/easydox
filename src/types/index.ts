@@ -27,6 +27,8 @@ export interface JsDocTag {
   name: string;
   type: string;
   description: string;
+  optional?: boolean;
+  defaultValue?: string;
 }
 
 export interface JsDocInfo {
