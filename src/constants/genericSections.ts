@@ -1,6 +1,6 @@
 import { JsDocTag } from '../types';
 
-export const markDownSections = [
+export const genericSections = [
   {
     title: 'Returns',
     tag: 'returns',
