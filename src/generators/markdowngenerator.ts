@@ -1,8 +1,8 @@
 import { ComponentInfo } from '../types';
 import { markdownTable } from 'markdown-table';
 import { generateMarkdownHeader, toTitleCase } from '../utils';
+import { genericSections } from '../constants/genericSections';
 import prettier from 'prettier';
-import { markDownSections } from './markdownSections';
 
 export async function markdownGenerator(
   components: ComponentInfo[]
@@ -32,7 +32,7 @@ export async function markdownGenerator(
       markdown += markdownTable(tableData, { align: ['l', 'c', 'l'] }) + '\n\n';
     }
 
-    markDownSections.forEach(({ title, tag, multi, render }) => {
+    genericSections.forEach(({ title, tag, multi, render }) => {
       const tags = jsDoc?.tags.filter((t) => t.title === tag) || [];
       if (tags.length > 0) {
         markdown += `### ${title}\n\n`;

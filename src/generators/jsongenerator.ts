@@ -1,3 +1,4 @@
+import { genericSections } from '../constants/genericSections';
 import { ComponentInfo } from '../types';
 import prettier from 'prettier';
 
@@ -17,6 +18,24 @@ export async function jsonGenerator(
     });
   });
 
+  const enrichedComponents = components.map((component) => {
+    const extraSections = genericSections.map((section) => {
+      const matchedTags = component.jsDoc?.tags.filter(
+        (tag) => tag.title === section.tag
+      ) || [];
+
+      return {
+        title: section.title,
+        content: matchedTags.map((tag) => section.render(tag)),
+      };
+    }).filter(section => section.content.length > 0);
+
+    return {
+      ...component,
+      extraSections,
+    };
+  });
+
   const rawJson = JSON.stringify(
     {
       metadata: {
@@ -26,7 +45,7 @@ export async function jsonGenerator(
         componentNames: allComponentNames,
         tagsUsed: Array.from(allTags),
       },
-      components,
+      components: enrichedComponents,
     },
     null,
     2
