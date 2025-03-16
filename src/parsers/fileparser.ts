@@ -1,11 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { parse } from '@babel/parser';
 import traverse, { NodePath } from '@babel/traverse';
 import * as t from '@babel/types';
-import { extractProps } from './parserutils';
-import { extractJsDoc } from './parserutils';
-import { generateCodeSnippet } from './parserutils';
+import { parse } from '@babel/parser';
+import { extractProps, extractJsDoc, generateCodeSnippet } from './parserutils';
 import { ComponentInfo } from '../types';
 
 export function fileParser(filePath: string): ComponentInfo[] {
@@ -18,6 +16,43 @@ export function fileParser(filePath: string): ComponentInfo[] {
 
   const components: ComponentInfo[] = [];
 
+  const extractComponentInfo = (
+    node:
+      | t.FunctionDeclaration
+      | t.ArrowFunctionExpression
+      | t.FunctionExpression,
+    componentName: string,
+    path: NodePath<t.Node>
+  ) => {
+    const params = node.params.filter(
+      (
+        param
+      ): param is
+        | t.Identifier
+        | t.ObjectPattern
+        | t.ArrayPattern
+        | t.AssignmentPattern
+        | t.RestElement =>
+        t.isIdentifier(param) ||
+        t.isObjectPattern(param) ||
+        t.isArrayPattern(param) ||
+        t.isAssignmentPattern(param) ||
+        t.isRestElement(param)
+    );
+
+    const props = extractProps(params);
+    const jsDoc = extractJsDoc(path);
+    const componentCode = generateCodeSnippet(node);
+
+    components.push({
+      componentName,
+      props,
+      jsDoc,
+      code: componentCode,
+      fileExtension,
+    });
+  };
+
   traverse(ast, {
     ExportNamedDeclaration(path: NodePath<t.ExportNamedDeclaration>) {
       if (t.isVariableDeclaration(path.node.declaration)) {
@@ -28,68 +63,14 @@ export function fileParser(filePath: string): ComponentInfo[] {
             (t.isArrowFunctionExpression(declaration.init) ||
               t.isFunctionExpression(declaration.init))
           ) {
-            const componentName = declaration.id.name;
-            const params = declaration.init.params.filter(
-              (
-                param
-              ): param is
-                | t.Identifier
-                | t.ObjectPattern
-                | t.ArrayPattern
-                | t.AssignmentPattern
-                | t.RestElement =>
-                t.isIdentifier(param) ||
-                t.isObjectPattern(param) ||
-                t.isArrayPattern(param) ||
-                t.isAssignmentPattern(param) ||
-                t.isRestElement(param)
-            );
-
-            const props = extractProps(params);
-            const jsDoc = extractJsDoc(path);
-            const componentCode = generateCodeSnippet(path.node);
-
-            components.push({
-              componentName,
-              props,
-              jsDoc,
-              code: componentCode,
-              fileExtension,
-            });
+            extractComponentInfo(declaration.init, declaration.id.name, path);
           }
         });
       }
     },
     FunctionDeclaration(path: NodePath<t.FunctionDeclaration>) {
       if (path.node.id) {
-        const componentName = path.node.id.name;
-        const params = path.node.params.filter(
-          (
-            param
-          ): param is
-            | t.Identifier
-            | t.ObjectPattern
-            | t.ArrayPattern
-            | t.AssignmentPattern
-            | t.RestElement =>
-            t.isIdentifier(param) ||
-            t.isObjectPattern(param) ||
-            t.isArrayPattern(param) ||
-            t.isAssignmentPattern(param) ||
-            t.isRestElement(param)
-        );
-
-        const props = extractProps(params);
-        const jsDoc = extractJsDoc(path);
-        const componentCode = generateCodeSnippet(path.node);
-
-        components.push({
-          componentName,
-          props,
-          jsDoc,
-          code: componentCode,
-          fileExtension,
-        });
+        extractComponentInfo(path.node, path.node.id.name, path);
       }
     },
     VariableDeclaration(path: NodePath<t.VariableDeclaration>) {
@@ -100,34 +81,7 @@ export function fileParser(filePath: string): ComponentInfo[] {
           (t.isArrowFunctionExpression(declaration.init) ||
             t.isFunctionExpression(declaration.init))
         ) {
-          const componentName = declaration.id.name;
-          const params = declaration.init.params.filter(
-            (
-              param
-            ): param is
-              | t.Identifier
-              | t.ObjectPattern
-              | t.ArrayPattern
-              | t.AssignmentPattern
-              | t.RestElement =>
-              t.isIdentifier(param) ||
-              t.isObjectPattern(param) ||
-              t.isArrayPattern(param) ||
-              t.isAssignmentPattern(param) ||
-              t.isRestElement(param)
-          );
-
-          const props = extractProps(params);
-          const jsDoc = extractJsDoc(path);
-          const componentCode = generateCodeSnippet(path.node);
-
-          components.push({
-            componentName,
-            props,
-            jsDoc,
-            code: componentCode,
-            fileExtension,
-          });
+          extractComponentInfo(declaration.init, declaration.id.name, path);
         }
       });
     },
