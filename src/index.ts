@@ -9,6 +9,9 @@ import { directoryParser } from './parsers';
 import { jsonGenerator, markdownGenerator } from './generators';
 import { writeFile } from './utils';
 import { CLIOptions } from './types';
+import { config as LoadEnvVars } from 'dotenv';
+
+LoadEnvVars();
 
 export async function runCLI(
   source?: string,
