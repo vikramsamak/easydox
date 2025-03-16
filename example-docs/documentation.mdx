@@ -47,9 +47,9 @@ Capitalizes the first letter of every word in a string.
 function toTitleCase(text) {
   return text
     .toLowerCase()
-    .split(' ')
+    .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+    .join(" ");
 }
 ```
 
@@ -128,7 +128,7 @@ Logs a message with a timestamp.
 ```js
 function logMessage(message, debug = false) {
   const time = new Date().toISOString();
-  console.log(`[${time}] ${debug ? '[DEBUG]' : ''} ${message}`);
+  console.log(`[${time}] ${debug ? "[DEBUG]" : ""} ${message}`);
 }
 ```
 
