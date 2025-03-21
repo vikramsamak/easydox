@@ -6,7 +6,6 @@ import {
   validateAndFormatMarkdown,
 } from '../utils';
 import { genericSections } from '../constants/genericsections';
-import prettier from 'prettier';
 import { generateProjectSummaryAI } from '../utils/generateProjectSummaryAI';
 
 export async function markdownGenerator(
