@@ -41,3 +41,8 @@ export interface JsDocTag {
   type: string;
   description: string;
 }
+
+export interface JsDoc {
+  description: string;
+  tags: JsDocTag[];
+}
