@@ -29,7 +29,11 @@
     "inquirer": "^12.4.2",
     "markdown-table": "^3.0.4",
     "openai": "^4.87.3",
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "remark": "^15.0.1",
+    "remark-lint": "^10.0.1",
+    "remark-preset-lint-recommended": "^7.0.1",
+    "remark-stringify": "^11.0.0"
   },
   "devDependencies": {
     "@types/babel__generator": "^7.6.8",

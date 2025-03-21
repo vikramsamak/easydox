@@ -3,3 +3,4 @@ export { promptUserForOptions } from './promptuser';
 export { logMessage } from './logger';
 export { toTitleCase } from './totitlecase';
 export { generateMarkdownHeader } from './generatemarkdownheader';
+export { validateAndFormatMarkdown } from './validateAndFormatMarkdown';
