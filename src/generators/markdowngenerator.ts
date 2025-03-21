@@ -3,6 +3,7 @@ import { markdownTable } from 'markdown-table';
 import { generateMarkdownHeader, toTitleCase } from '../utils';
 import { genericSections } from '../constants/genericsections';
 import prettier from 'prettier';
+import { generateProjectSummaryAI } from '../utils/generateProjectSummaryAI';
 
 export async function markdownGenerator(
   components: ComponentInfo[]
@@ -58,6 +59,12 @@ export async function markdownGenerator(
 
     markdown += `---\n\n`;
   });
+
+  const projectSummary = await generateProjectSummaryAI(components);
+
+  if (projectSummary) {
+    markdown = `# 📄 Project Overview\n\n${projectSummary}\n\n` + markdown;
+  }
 
   return prettier.format(markdown, { parser: 'markdown' });
 }
