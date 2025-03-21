@@ -3,5 +3,11 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "proseWrap": "preserve"
+  "proseWrap": "preserve",
+  "printWidth": 80,
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "endOfLine": "lf",
+  "embeddedLanguageFormatting": "auto",
+  "quoteProps": "as-needed"
 }

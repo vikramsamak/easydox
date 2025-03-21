@@ -41,7 +41,7 @@ Adds two numbers together.
 #### Code Example
 
 ```js
-(a, b) => a + b
+(a, b) => a + b;
 ```
 
 ---
@@ -65,11 +65,11 @@ Capitalizes the first letter of every word in a string.
 
 ```js
 function toTitleCase(text) {
-  return text.
-  toLowerCase().
-  split(' ').
-  map((word) => word.charAt(0).toUpperCase() + word.slice(1)).
-  join(' ');
+  return text
+    .toLowerCase()
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 }
 ```
 
@@ -133,9 +133,9 @@ Logs a message with a timestamp.
 
 #### Props
 
-| Name        |    Type   | Description                   |
+| Name        |   Type    | Description                   |
 | :---------- | :-------: | :---------------------------- |
-| **message** |  `string` | The message to log.           |
+| **message** | `string`  | The message to log.           |
 | **debug**   | `boolean` | Whether to log in debug mode. |
 
 #### Returns
