@@ -1,95 +1,97 @@
-# 📄 Project Overview
-
-Title: UI Component Library Overview
-
-This UI Component Library is a collection of essential utility functions designed to streamline the development process and enhance the user interface of applications. The library consists of the following components:
-
-1. Sum: A utility function that takes an array of numbers as input and returns the sum of the elements in the array. This component is useful for performing calculations quickly and efficiently.
-
-2. toTitleCase: A string manipulation function that converts the first letter of each word in a string to uppercase, while keeping the rest of the letters in lowercase. This component is useful for formatting text in a consistent and professional manner.
-
-3. getRectangleArea: A function that calculates the area of a rectangle given its width and height. This component is useful for handling geometric calculations related to rectangular shapes.
-
-4. fetchData: A utility function that retrieves data from an external source, such as an API or a database. This component simplifies the process of fetching data and makes it easier to integrate data into your application.
-
-5. logMessage: A function that logs a message to the console. This component is useful for debugging purposes, as it allows developers to easily view and troubleshoot issues during the development process.
-
-By utilizing these components, developers can create more efficient, user-friendly, and maintainable applications with ease. The UI Component Library aims to provide a comprehensive set of tools that cater to various development needs, ultimately saving time and effort in the development process.
-
 # Autodocs
 
 CLI Based tool to automate docs generation.
 
-## Sum
+## Project Summary
+
+This project is a collection of JavaScript utility functions, each serving a specific purpose and documented using JSDoc. The functions are designed to be reusable and modular, making them easy to integrate into larger applications.
+
+### Key Features
+
+- **sum**: Adds two numbers together.
+- **toTitleCase**: Capitalizes the first letter of every word in a string.
+- **getRectangleArea**: Calculates the area of a rectangle.
+- **fetchData**: Fetches data from a given API URL.
+- **logMessage**: Logs a message with a timestamp and optional debug mode.
+
+### Additional Insights
+
+- All functions are written in ES6 syntax, ensuring compatibility with modern JavaScript environments.
+- The project uses JSDoc for documentation, making it easier to understand the purpose and usage of each function.
+- The project could be extended by adding more utility functions as needed.
+- It's recommended to use the `fetchData` function with caution, as it doesn't handle errors by default. You may want to add error handling according to your specific use case.
+- The `logMessage` function can be useful for debugging purposes, but it's important to remember that it logs to the console, so it should not be used in production without proper error handling or logging system in place.
+
+### Sum
 
 Adds two numbers together.
 
-### Props
+#### Props
 
 | Name  |   Type   | Description               |
 | :---- | :------: | :------------------------ |
 | **a** | `number` | The first number to add.  |
 | **b** | `number` | The second number to add. |
 
-### Returns
+#### Returns
 
 - Type: `number`
 - Description: The sum of both numbers.
 
-### Code Example
+#### Code Example
 
 ```js
-(a, b) => a + b;
+(a, b) => a + b
 ```
 
 ---
 
-## To Title Case
+### To Title Case
 
 Capitalizes the first letter of every word in a string.
 
-### Props
+#### Props
 
 | Name     |   Type   | Description       |
 | :------- | :------: | :---------------- |
 | **text** | `string` | The input string. |
 
-### Returns
+#### Returns
 
 - Type: `string`
 - Description: The title-cased string.
 
-### Code Example
+#### Code Example
 
 ```js
 function toTitleCase(text) {
-  return text
-    .toLowerCase()
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  return text.
+  toLowerCase().
+  split(' ').
+  map((word) => word.charAt(0).toUpperCase() + word.slice(1)).
+  join(' ');
 }
 ```
 
 ---
 
-## Get Rectangle Area
+### Get Rectangle Area
 
 Calculates the area of a rectangle.
 
-### Props
+#### Props
 
 | Name       |   Type   | Description                  |
 | :--------- | :------: | :--------------------------- |
 | **width**  | `number` | The width of the rectangle.  |
 | **height** | `number` | The height of the rectangle. |
 
-### Returns
+#### Returns
 
 - Type: `number`
 - Description: The area of the rectangle.
 
-### Code Example
+#### Code Example
 
 ```js
 function getRectangleArea(width, height) {
@@ -99,22 +101,22 @@ function getRectangleArea(width, height) {
 
 ---
 
-## Fetch Data
+### Fetch Data
 
 Fetches data from a given API URL.
 
-### Props
+#### Props
 
 | Name    |   Type   | Description                          |
 | :------ | :------: | :----------------------------------- |
 | **url** | `string` | The API endpoint to fetch data from. |
 
-### Returns
+#### Returns
 
 - Type: `Promise.<Object>`
 - Description: A promise that resolves to the JSON response.
 
-### Code Example
+#### Code Example
 
 ```js
 async function fetchData(url) {
@@ -125,28 +127,28 @@ async function fetchData(url) {
 
 ---
 
-## Log Message
+### Log Message
 
 Logs a message with a timestamp.
 
-### Props
+#### Props
 
-| Name        |   Type    | Description                   |
+| Name        |    Type   | Description                   |
 | :---------- | :-------: | :---------------------------- |
-| **message** | `string`  | The message to log.           |
+| **message** |  `string` | The message to log.           |
 | **debug**   | `boolean` | Whether to log in debug mode. |
 
-### Returns
+#### Returns
 
 - Type: `void`
 - Description: No description
 
-### Code Example
+#### Code Example
 
 ```js
 function logMessage(message, debug = false) {
   const time = new Date().toISOString();
-  console.log(`[${time}] ${debug ? "[DEBUG]" : ""} ${message}`);
+  console.log(`[${time}] ${debug ? '[DEBUG]' : ''} ${message}`);
 }
 ```
 
