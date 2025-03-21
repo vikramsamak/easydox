@@ -10,17 +10,20 @@ export async function generateProjectSummaryAI(
       messages: [
         {
           role: 'system',
-          content: `You are a technical writer summarizing a UI component library. Provide a project-wide summary or overview for the given components.`,
+          content: `You are a technical writer. Based on the provided modules or files, create a project-wide summary strictly in Markdown format.
+
+The summary must include:
+- A general description of the project based on the modules/files
+- Key highlights or features in bullet points
+- Any additional insights, suggestions, or notes
+
+.`,
         },
         {
           role: 'user',
-          content: `Here are the components:
-            ${JSON.stringify(
-              components.map((c) => c.componentName),
-              null,
-              2
-            )}
-            `,
+          content: `Here are the detected modules/files with their full structure:
+          ${JSON.stringify(components, null, 2)}
+          `,
         },
       ],
     });
