@@ -1,3 +1,21 @@
+# 📄 Project Overview
+
+Title: UI Component Library Overview
+
+This UI Component Library is a collection of essential utility functions designed to streamline the development process and enhance the user interface of applications. The library consists of the following components:
+
+1. Sum: A utility function that takes an array of numbers as input and returns the sum of the elements in the array. This component is useful for performing calculations quickly and efficiently.
+
+2. toTitleCase: A string manipulation function that converts the first letter of each word in a string to uppercase, while keeping the rest of the letters in lowercase. This component is useful for formatting text in a consistent and professional manner.
+
+3. getRectangleArea: A function that calculates the area of a rectangle given its width and height. This component is useful for handling geometric calculations related to rectangular shapes.
+
+4. fetchData: A utility function that retrieves data from an external source, such as an API or a database. This component simplifies the process of fetching data and makes it easier to integrate data into your application.
+
+5. logMessage: A function that logs a message to the console. This component is useful for debugging purposes, as it allows developers to easily view and troubleshoot issues during the development process.
+
+By utilizing these components, developers can create more efficient, user-friendly, and maintainable applications with ease. The UI Component Library aims to provide a comprehensive set of tools that cater to various development needs, ultimately saving time and effort in the development process.
+
 # Autodocs
 
 CLI Based tool to automate docs generation.
@@ -47,9 +65,9 @@ Capitalizes the first letter of every word in a string.
 function toTitleCase(text) {
   return text
     .toLowerCase()
-    .split(' ')
+    .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+    .join(" ");
 }
 ```
 
@@ -128,7 +146,7 @@ Logs a message with a timestamp.
 ```js
 function logMessage(message, debug = false) {
   const time = new Date().toISOString();
-  console.log(`[${time}] ${debug ? '[DEBUG]' : ''} ${message}`);
+  console.log(`[${time}] ${debug ? "[DEBUG]" : ""} ${message}`);
 }
 ```
 
