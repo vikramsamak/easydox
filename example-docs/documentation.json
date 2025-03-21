@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2025-03-21T14:01:02.291Z",
+    "generatedAt": "2025-03-21T15:01:16.045Z",
     "componentCount": 5,
     "fileExtensions": [".js"],
     "componentNames": [
@@ -15,7 +15,18 @@
   "components": [
     {
       "componentName": "sum",
-      "props": ["a", "b"],
+      "props": [
+        {
+          "name": "a",
+          "type": "number",
+          "description": "The first number to add."
+        },
+        {
+          "name": "b",
+          "type": "number",
+          "description": "The second number to add."
+        }
+      ],
       "jsDoc": {
         "description": "Adds two numbers together.",
         "tags": [
@@ -44,6 +55,7 @@
       },
       "code": "(a, b) => a + b",
       "fileExtension": ".js",
+      "description": "Adds two numbers together.",
       "extraSections": [
         {
           "title": "Returns",
@@ -55,7 +67,13 @@
     },
     {
       "componentName": "toTitleCase",
-      "props": ["text"],
+      "props": [
+        {
+          "name": "text",
+          "type": "string",
+          "description": "The input string."
+        }
+      ],
       "jsDoc": {
         "description": "Capitalizes the first letter of every word in a string.",
         "tags": [
@@ -77,6 +95,7 @@
       },
       "code": "function toTitleCase(text) {\n  return text.\n  toLowerCase().\n  split(' ').\n  map((word) => word.charAt(0).toUpperCase() + word.slice(1)).\n  join(' ');\n}",
       "fileExtension": ".js",
+      "description": "Capitalizes the first letter of every word in a string.",
       "extraSections": [
         {
           "title": "Returns",
@@ -88,7 +107,18 @@
     },
     {
       "componentName": "getRectangleArea",
-      "props": ["width", "height"],
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "description": "The width of the rectangle."
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "description": "The height of the rectangle."
+        }
+      ],
       "jsDoc": {
         "description": "Calculates the area of a rectangle.",
         "tags": [
@@ -117,6 +147,7 @@
       },
       "code": "function getRectangleArea(width, height) {\n  return width * height;\n}",
       "fileExtension": ".js",
+      "description": "Calculates the area of a rectangle.",
       "extraSections": [
         {
           "title": "Returns",
@@ -128,7 +159,13 @@
     },
     {
       "componentName": "fetchData",
-      "props": ["url"],
+      "props": [
+        {
+          "name": "url",
+          "type": "string",
+          "description": "The API endpoint to fetch data from."
+        }
+      ],
       "jsDoc": {
         "description": "Fetches data from a given API URL.",
         "tags": [
@@ -150,6 +187,7 @@
       },
       "code": "async function fetchData(url) {\n  const response = await fetch(url);\n  return response.json();\n}",
       "fileExtension": ".js",
+      "description": "Fetches data from a given API URL.",
       "extraSections": [
         {
           "title": "Returns",
@@ -161,7 +199,18 @@
     },
     {
       "componentName": "logMessage",
-      "props": ["message", "debug"],
+      "props": [
+        {
+          "name": "message",
+          "type": "string",
+          "description": "The message to log."
+        },
+        {
+          "name": "debug",
+          "type": "boolean",
+          "description": "Whether to log in debug mode."
+        }
+      ],
       "jsDoc": {
         "description": "Logs a message with a timestamp.",
         "tags": [
@@ -190,6 +239,7 @@
       },
       "code": "function logMessage(message, debug = false) {\n  const time = new Date().toISOString();\n  console.log(`[${time}] ${debug ? '[DEBUG]' : ''} ${message}`);\n}",
       "fileExtension": ".js",
+      "description": "Logs a message with a timestamp.",
       "extraSections": [
         {
           "title": "Returns",
