@@ -7,6 +7,7 @@ import {
 } from '../utils';
 import { genericSections } from '../constants/genericsections';
 import { generateProjectSummaryAI } from '../utils/generateProjectSummaryAI';
+import { generateComponentDocsAI } from '../utils/generateComponentDocsAI';
 
 export async function markdownGenerator(
   components: ComponentInfo[]
@@ -18,19 +19,40 @@ export async function markdownGenerator(
     markdown += `${projectSummary}\n\n`;
   }
 
-  components.forEach(({ componentName, props, jsDoc, code, fileExtension }) => {
+  for (const {
+    componentName,
+    props,
+    jsDoc,
+    code,
+    fileExtension,
+  } of components) {
     markdown += `## ${toTitleCase(componentName)}\n\n`;
 
-    const componentDescription =
-      jsDoc?.description?.trim() || 'No description available.';
-    markdown += `${componentDescription}\n\n`;
+    const needsAIJSDoc =
+      !jsDoc?.description && (!jsDoc?.tags || jsDoc.tags.length === 0);
 
-    // Props table from @param tags
+    let componentDescription = jsDoc?.description?.trim() || '';
+    let tags = jsDoc?.tags || [];
+
+    // Fallback to AI
+    if (needsAIJSDoc && code) {
+      const aiGenerated = await generateComponentDocsAI({
+        componentName,
+        code,
+        props,
+      });
+      componentDescription = aiGenerated?.description || '';
+      tags = aiGenerated?.tags || [];
+    }
+
+    markdown += `${componentDescription || 'No description available.'}\n\n`;
+
+    // Props Table
     if (props.length > 0) {
       markdown += `### Props\n\n`;
       const tableData = [['Name', 'Type', 'Description']];
       props.forEach((prop) => {
-        const paramTag = jsDoc?.tags.find(
+        const paramTag = tags.find(
           (tag) => tag.title === 'param' && tag.name === prop
         );
         const propType = paramTag?.type || 'unknown';
@@ -38,14 +60,15 @@ export async function markdownGenerator(
           paramTag?.description?.trim() || 'No description';
         tableData.push([`**${prop}**`, `\`${propType}\``, propDescription]);
       });
-      markdown += markdownTable(tableData, { align: ['l', 'c', 'l'] }) + '\n\n';
+      markdown += markdownTable(tableData, { align: ['l', 'c', 'l'] }) + `\n\n`;
     }
 
+    // Generic Sections (e.g., @returns, @example)
     genericSections.forEach(({ title, tag, multi, render }) => {
-      const tags = jsDoc?.tags.filter((t) => t.title === tag) || [];
-      if (tags.length > 0) {
+      const sectionTags = tags.filter((t) => t.title === tag);
+      if (sectionTags.length > 0) {
         markdown += `### ${title}\n\n`;
-        tags.forEach((t) => {
+        sectionTags.forEach((t) => {
           markdown += render(t);
         });
         if (!multi) markdown += `\n`;
@@ -66,7 +89,7 @@ export async function markdownGenerator(
     }
 
     markdown += `---\n\n`;
-  });
+  }
 
   return await validateAndFormatMarkdown(markdown);
 }

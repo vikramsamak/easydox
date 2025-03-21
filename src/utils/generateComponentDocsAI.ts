@@ -1,36 +1,59 @@
 import { openai } from '../lib/openaiconfig';
-import { ComponentInfo } from '../types';
+import { JsDoc } from '../types';
 
-export async function generateComponentDocsAI(
-  component: ComponentInfo
-): Promise<ComponentInfo & { extraSections?: string }> {
+interface GenerateDocsParams {
+  componentName: string;
+  code: string;
+  props?: string[];
+}
+
+export async function generateComponentDocsAI({
+  componentName,
+  code,
+  props = [],
+}: GenerateDocsParams): Promise<Partial<JsDoc>> {
   try {
     const response = await openai.chat.completions.create({
       model: 'mistralai/mistral-7b-instruct:free',
       messages: [
         {
           role: 'system',
-          content: `You are a technical writer helping document UI components. Provide additional sections such as "Usage Example" or "Best Practices" for this component: ${component.componentName}`,
+          content: `You are an expert technical writer. Given a component, output a COMPLETE JSDoc representation as JSON. Format:
+
+{
+  "description": "string",
+  "tags": [
+    {
+      "title": "param" | "returns",
+      "name"?: "string",
+      "type": "string",
+      "description": "string"
+    }
+  ]
+}
+
+Strictly follow the JSON structure. DO NOT add markdown or extra text.`,
         },
         {
           role: 'user',
-          content: `Component Details:
-          ${JSON.stringify(component, null, 2)}
-          `,
+          content: `Component Name: ${componentName}
+Props: ${props.join(', ') || 'N/A'}
+Code: \n${code}`,
         },
       ],
     });
 
     const aiContent = response.choices[0]?.message?.content || '';
 
-    return {
-      ...component,
-      extraSections: aiContent
-        ? `## AI Generated Insights\n\n${aiContent}\n\n`
-        : '',
-    };
+    const jsonStart = aiContent.indexOf('{');
+    const jsonEnd = aiContent.lastIndexOf('}');
+    const jsonString = aiContent.substring(jsonStart, jsonEnd + 1);
+
+    const jsDoc: Partial<JsDoc> = JSON.parse(jsonString);
+
+    return jsDoc;
   } catch (err) {
     console.error('AI Component Docs Error:', err);
-    return { ...component };
+    return {};
   }
 }
