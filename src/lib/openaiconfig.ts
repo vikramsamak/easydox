@@ -2,7 +2,7 @@ import OpenAI from 'openai';
 import { config as loadEnv } from 'dotenv';
 loadEnv();
 
-const apiKey = process.env.OPEN_ROUTER_API_KEY as string;
+const apiKey = process.env.OPEN_ROUTER_API_KEY;
 
 export const openai = new OpenAI({
   baseURL: 'https://openrouter.ai/api/v1',
