@@ -1,23 +1,49 @@
 {
   "name": "easydox",
   "version": "1.0.0",
-  "description": "CLI Based tool to automate docs generation.",
-  "main": "index.js",
-  "scripts": {
-    "dev-args": "npx ts-node src/bin/cli.ts -s example/ -f md,json,mdx -o example-docs",
-    "dev-interactive": "npx ts-node src/bin/cli.ts",
-    "build": "tsc",
-    "start": "node dist/bin/cli.js ",
-    "prestart": "npm run build",
-    "format": "prettier --write ."
-  },
+  "description": "Easydox - Automate your JavaScript/TypeScript project documentation with ease.",
+  "main": "dist/index.js",
   "bin": {
     "easydox": "./dist/bin/cli.js"
   },
-  "keywords": [],
+  "keywords": [
+    "documentation",
+    "cli",
+    "typescript",
+    "javascript",
+    "generator",
+    "docs",
+    "automation"
+  ],
   "author": "Vikram Samak",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vikramsamak/easydox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vikramsamak/easydox/issues"
+  },
+  "homepage": "https://github.com/vikramsamak/easydox#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc",
+    "start": "node dist/bin/cli.js ",
+    "prestart": "npm run build",
+    "prepublishOnly": "npm run build",
+    "dev-interactive": "npx ts-node src/bin/cli.ts",
+    "dev-args": "npx ts-node src/bin/cli.ts -s example/ -f md,json,mdx -o example-docs",
+    "format": "prettier --write ."
+  },
   "dependencies": {
     "@babel/parser": "^7.26.9",
     "@babel/traverse": "^7.26.9",
@@ -40,7 +66,8 @@
     "remark-preset-lint-consistent": "^6.0.1",
     "remark-preset-lint-markdown-style-guide": "^6.0.1",
     "remark-preset-lint-recommended": "^7.0.1",
-    "remark-stringify": "^11.0.0"
+    "remark-stringify": "^11.0.0",
+    "rimraf": "^6.0.1"
   },
   "devDependencies": {
     "@types/babel__generator": "^7.6.8",
