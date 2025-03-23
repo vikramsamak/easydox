@@ -7,7 +7,8 @@
     "dev-args": "npx ts-node src/bin/cli.ts -s example/ -f md,json,mdx -o example-docs",
     "dev-interactive": "npx ts-node src/bin/cli.ts",
     "build": "tsc",
-    "start": "node dist/bin/cli.js",
+    "start": "node dist/bin/cli.js ",
+    "prestart": "npm run build",
     "format": "prettier --write ."
   },
   "bin": {
