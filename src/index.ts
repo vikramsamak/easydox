@@ -1,5 +1,10 @@
 import chalk from 'chalk';
-import { logMessage, printWelcomeMessage, promptUserForOptions } from './utils';
+import {
+  logMessage,
+  printExitMessage,
+  printWelcomeMessage,
+  promptUserForOptions,
+} from './utils';
 import {
   validateFormat,
   validateOutput,
@@ -61,7 +66,7 @@ export async function runCLI(
 
     const formats = options.format ? options.format.split(',') : [];
 
-    formats.forEach(async (format: string) => {
+    for (const format of formats) {
       let content = '';
       let fileName = `documentation.${format.trim()}`;
 
@@ -75,13 +80,13 @@ export async function runCLI(
           break;
         default:
           logMessage(`⚠️ Unsupported format: ${format}, skipping...`, 'yellow');
-          return;
+          continue;
       }
 
       writeFile(options.output!, fileName, content);
-    });
+    }
 
-    logMessage(`✅ Documentation Generation Completed!`, 'green');
+    printExitMessage();
   } catch (error) {
     logMessage(
       `❌ Error parsing directory: ${

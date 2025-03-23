@@ -5,4 +5,4 @@ export { toTitleCase } from './totitlecase';
 export { generateMarkdownHeader } from './generatemarkdownheader';
 export { validateAndFormatMarkdown } from './validateAndFormatMarkdown';
 export { generateComponentDocsAI } from './generateComponentDocsAI';
-export { printWelcomeMessage } from './printwelcomemessage';
+export { printWelcomeMessage, printExitMessage } from './messages';
