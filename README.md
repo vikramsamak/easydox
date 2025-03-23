@@ -49,11 +49,11 @@ Easydox will walk you through questions to configure everything interactively.
 easydox -s ./src -o ./docs -f md,json,mdx
 ```
 
-| Option     | Description                                  |
-|------------|----------------------------------------------|
-| `-s, --source` | Source directory (default: `./src`)           |
-| `-o, --output` | Output directory (default: `./docs`)          |
-| `-f, --formats`| Output formats, comma-separated (`md`, `json`, `mdx`) |
+| Option          | Description                                           |
+| --------------- | ----------------------------------------------------- |
+| `-s, --source`  | Source directory (default: `./src`)                   |
+| `-o, --output`  | Output directory (default: `./docs`)                  |
+| `-f, --formats` | Output formats, comma-separated (`md`, `json`, `mdx`) |
 
 ---
 
