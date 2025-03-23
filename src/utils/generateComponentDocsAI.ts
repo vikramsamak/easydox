@@ -1,5 +1,6 @@
 import { openai } from '../lib/openaiconfig';
 import { JsDoc } from '../types';
+import { logMessage } from './logger';
 
 interface GenerateDocsParams {
   componentName: string;
@@ -53,7 +54,7 @@ Code: \n${code}`,
 
     return jsDoc;
   } catch (err) {
-    console.error('AI Component Docs Error:', err);
+    logMessage('Something went wrong while generating component docs', 'red');
     return {};
   }
 }

@@ -1,5 +1,6 @@
 import { openai } from '../lib/openaiconfig';
 import { ComponentInfo } from '../types';
+import { logMessage } from './logger';
 
 export async function generateProjectSummaryAI(
   components: ComponentInfo[]
@@ -30,7 +31,7 @@ The summary must include:
 
     return response.choices[0]?.message?.content || '';
   } catch (err) {
-    console.error('AI Project Summary Error:', err);
+    logMessage('Something went wrong while generating project summary', 'red');
     return '';
   }
 }
