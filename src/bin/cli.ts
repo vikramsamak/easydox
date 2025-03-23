@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import { runCLI } from '../index';
+import { logMessage } from '../utils';
+
+process.on('SIGINT', () => {
+  logMessage('\n👋 Exiting easydox ...', 'blue');
+  process.exit(0);
+});
 
 const program = new Command();
 
