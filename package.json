@@ -36,7 +36,9 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && tsc",
+    "inject-envs": "node inject-env.js",
+    "compile": "tsc",
+    "build": "npm run clean && npm run compile && npm run inject-envs",
     "start": "node dist/bin/cli.js ",
     "prestart": "npm run build",
     "prepublishOnly": "npm run build",
