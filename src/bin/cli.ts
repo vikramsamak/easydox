@@ -2,14 +2,11 @@
 import { Command } from 'commander';
 import { runCLI } from '../index';
 import { logMessage } from '../utils';
-import { config as loadEnv } from 'dotenv';
 
 process.on('SIGINT', () => {
   logMessage('\n👋 Exiting easydox ...', 'blue');
   process.exit(0);
 });
-
-loadEnv();
 
 const program = new Command();
 
