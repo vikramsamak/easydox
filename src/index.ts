@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { logMessage, promptUserForOptions } from './utils';
+import { logMessage, printWelcomeMessage, promptUserForOptions } from './utils';
 import {
   validateFormat,
   validateOutput,
@@ -21,7 +21,7 @@ export async function runCLI(
 
   options = { ...defaultOptions, ...options };
 
-  console.log(chalk.blue(`\n📄 Easydox: Generating documentation...\n`));
+  printWelcomeMessage();
 
   if (!source || !options.format || !options.output) {
     const answers = await promptUserForOptions({ source, ...options });
@@ -31,18 +31,19 @@ export async function runCLI(
   }
 
   if (!source || !validateSource(source)) {
-    console.log(chalk.red('🚨 Error: Invalid source directory.'));
+    logMessage('🚨 Error: Invalid source directory.', 'red');
     return;
   }
 
   if (!validateFormat(options.format ?? '')) {
-    console.log(chalk.red(`🚨 Error: Invalid format "${options.format}".`));
+    logMessage(`🚨 Error: Invalid format "${options.format}".`, 'red');
     return;
   }
 
   if (!validateOutput(options.output)) {
-    console.log(
-      chalk.red(`🚨 Error: Invalid output directory "${options.output}".`)
+    logMessage(
+      `🚨 Error: Invalid output directory "${options.output}".`,
+      'red'
     );
     return;
   }
@@ -73,9 +74,7 @@ export async function runCLI(
           content = await jsonGenerator(components);
           break;
         default:
-          console.log(
-            chalk.yellow(`⚠️ Unsupported format: ${format}, skipping...`)
-          );
+          logMessage(`⚠️ Unsupported format: ${format}, skipping...`, 'yellow');
           return;
       }
 
@@ -84,12 +83,11 @@ export async function runCLI(
 
     logMessage(`✅ Documentation Generation Completed!`, 'green');
   } catch (error) {
-    console.error(
-      chalk.red(
-        `❌ Error parsing directory: ${
-          error instanceof Error ? error.message : String(error)
-        }`
-      )
+    logMessage(
+      `❌ Error parsing directory: ${
+        error instanceof Error ? error.message : String(error)
+      }`,
+      'red'
     );
   }
 }
