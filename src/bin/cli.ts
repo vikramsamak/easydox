@@ -8,6 +8,13 @@ process.on('SIGINT', () => {
   process.exit(0);
 });
 
+process.removeAllListeners('warning');
+process.on('warning', (warning: any) => {
+  if (warning.code !== 'DEP0040') {
+    console.warn(warning);
+  }
+});
+
 const program = new Command();
 
 program
