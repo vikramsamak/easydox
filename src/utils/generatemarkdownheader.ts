@@ -7,7 +7,7 @@ export function generateMarkdownHeader(): string {
     const packageJsonPath = path.join(process.cwd(), 'package.json');
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
 
-    const packageName = packageJson.name || 'AutoDocs';
+    const packageName = packageJson.name || 'Easydox';
     const formattedName = toTitleCase(packageName);
     const packageDescription = packageJson.description?.trim() || '';
 
@@ -19,6 +19,6 @@ export function generateMarkdownHeader(): string {
     return header;
   } catch (error) {
     console.error('⚠️ Error reading package.json:', error);
-    return `# AutoDocs\n\n`; // Fallback title
+    return `# Easydox\n\n`; // Fallback title
   }
 }

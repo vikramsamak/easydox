@@ -7,7 +7,7 @@ const program = new Command();
 program
   .name('easydox')
   .description(
-    '📄 AutoDocs - Generate documentation for JavaScript/TypeScript projects'
+    '📄 Easydox - Generate documentation for JavaScript/TypeScript projects'
   )
   .version('1.0.0')
   .option('-s, --source <directory>', 'Source directory to scan')

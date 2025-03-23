@@ -21,7 +21,7 @@ export async function runCLI(
 
   options = { ...defaultOptions, ...options };
 
-  console.log(chalk.blue(`\n📄 AutoDocs: Generating documentation...\n`));
+  console.log(chalk.blue(`\n📄 Easydox: Generating documentation...\n`));
 
   if (!source || !options.format || !options.output) {
     const answers = await promptUserForOptions({ source, ...options });
