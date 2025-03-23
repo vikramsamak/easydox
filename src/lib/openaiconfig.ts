@@ -10,5 +10,6 @@ export const openai = new OpenAI({
   defaultHeaders: {
     'HTTP-Referer': 'https://github.com/vikramsamak/easydox',
     'X-Title': 'Easydox',
+    'User-Agent': 'Easydox-CLI/1.0',
   },
 });
