@@ -5,7 +5,7 @@ import { runCLI } from '../index';
 const program = new Command();
 
 program
-  .name('autodocs')
+  .name('easydox')
   .description(
     '📄 AutoDocs - Generate documentation for JavaScript/TypeScript projects'
   )
@@ -21,11 +21,11 @@ program
     'after',
     `
 Examples:
-  $ autodocs                                                        # Start interactive mode
-  $ autodocs --source src/                                          # Scan 'src/' and ask for other options
-  $ autodocs --source src/ --format md --output docs --enableAI     # Fully automated mode (CI/CD friendly)
+  $ easydox                                                        # Start interactive mode
+  $ easydox --source src/                                          # Scan 'src/' and ask for other options
+  $ easydox --source src/ --format md --output docs --enableAI     # Fully automated mode (CI/CD friendly)
 
-📢 Tip: Run 'autodocs -h' to view available options at any time!
+📢 Tip: Run 'easydox -h' to view available options at any time!
 `
   )
   .action((options) => {
