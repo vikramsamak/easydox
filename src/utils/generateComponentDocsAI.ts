@@ -15,25 +15,24 @@ export async function generateComponentDocsAI({
 }: GenerateDocsParams): Promise<Partial<JsDoc>> {
   try {
     const response = await openai.chat.completions.create({
-      model: 'mistralai/mistral-7b-instruct:free',
+      model: 'deepseek/deepseek-r1:free',
       messages: [
         {
           role: 'system',
           content: `You are an expert technical writer. Given a component, output a COMPLETE JSDoc representation as JSON. Format:
+  {
+                      "description": "string",
+                      "tags": [
+                        {
+                          "title": "param" | "returns",
+                          "name"?: "string",
+                          "type": "string",
+                          "description": "string"
+                        }
+                      ]
+                    }
 
-{
-  "description": "string",
-  "tags": [
-    {
-      "title": "param" | "returns",
-      "name"?: "string",
-      "type": "string",
-      "description": "string"
-    }
-  ]
-}
-
-Strictly follow the JSON structure. DO NOT add markdown or extra text.`,
+                  Strictly follow the JSON structure. DO NOT add markdown or extra text.`,
         },
         {
           role: 'user',

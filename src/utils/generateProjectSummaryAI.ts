@@ -7,18 +7,15 @@ export async function generateProjectSummaryAI(
 ): Promise<string> {
   try {
     const response = await openai.chat.completions.create({
-      model: 'mistralai/mistral-7b-instruct:free',
+      model: 'deepseek/deepseek-r1:free',
       messages: [
         {
           role: 'system',
           content: `You are a technical writer. Based on the provided modules or files, create a project-wide summary strictly in Markdown format.
-
-The summary must include:
-- A general description of the project based on the modules/files
-- Key highlights or features in bullet points
-- Any additional insights, suggestions, or notes
-
-.`,
+                    The summary must include:
+                    - A general description of the project based on the modules/files
+                    - Key highlights or features in bullet points
+                    - Any additional insights, suggestions, or notes.`,
         },
         {
           role: 'user',
