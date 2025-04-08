@@ -43,7 +43,7 @@
     "build": "npm run clean && npm run compile && npm run inject-envs && npm run obfuscate",
     "start": "node dist/bin/cli.js ",
     "prestart": "npm run build",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm version patch && npm run build",
     "dev-interactive": "npx ts-node src/bin/cli.ts",
     "dev-args": "npx ts-node src/bin/cli.ts -s example/ -f md,json,mdx -o example-docs"
   },
