@@ -15,7 +15,7 @@ export async function generateComponentDocsAI({
 }: GenerateDocsParams): Promise<Partial<JsDoc>> {
   try {
     const response = await openai.chat.completions.create({
-      model: 'deepseek/deepseek-r1:free',
+      model: 'openrouter/quasar-alpha',
       messages: [
         {
           role: 'system',

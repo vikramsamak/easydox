@@ -7,7 +7,7 @@ export async function generateProjectSummaryAI(
 ): Promise<string> {
   try {
     const response = await openai.chat.completions.create({
-      model: 'deepseek/deepseek-r1:free',
+      model: 'openrouter/quasar-alpha',
       messages: [
         {
           role: 'system',
