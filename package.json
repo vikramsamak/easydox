@@ -1,6 +1,6 @@
 {
   "name": "easydox",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Easydox - Automate your JavaScript/TypeScript project documentation with ease.",
   "main": "dist/index.js",
   "bin": {
